@@ -6,6 +6,7 @@ type TextInputTypes = {
 	handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	disabled?: boolean;
 	error?: string;
+	hint?: string;
 };
 
 const TextInput: React.FC<TextInputTypes> = ({
@@ -16,6 +17,7 @@ const TextInput: React.FC<TextInputTypes> = ({
 	handleChange,
 	disabled = false,
 	error,
+	hint,
 }) => {
 	return (
 		<>
@@ -35,6 +37,7 @@ const TextInput: React.FC<TextInputTypes> = ({
 					<hr className="border-2 w-3/4 border-green-500" />
 				</div>
 				<span className="text-red-500">{error}</span>
+				<span className="text-gray-500">{hint}</span>
 			</div>
 		</>
 	);

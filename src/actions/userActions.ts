@@ -31,3 +31,18 @@ export const findUser = async (formData: any) => {
 		return false;
 	}
 };
+
+export const updateUser = async (email: string, formData: any) => {
+	await connectDB();
+	try {
+		const user = await User.updateOne({ email: email }, formData);
+		if (user) {
+			return JSON.parse(JSON.stringify(user));
+		} else {
+			return false;
+		}
+	} catch (error: any) {
+		console.log(error.message);
+		return false;
+	}
+};
