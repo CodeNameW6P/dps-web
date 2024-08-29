@@ -16,7 +16,7 @@ import {
 	setPresentPostOfficeError,
 } from "@/redux/slices/formErrorSlice";
 import { nextPage, prevPage } from "@/redux/slices/currentPageSlice";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { findUser, updateUser } from "@/actions/userActions";
 import TextInput from "@/components/TextInput";
 
@@ -41,24 +41,20 @@ const PresentAddress: React.FC = () => {
 
 	const dispatch = useAppDispatch();
 
-	const setFormValues = async () => {
-		const user = await findUser({ email: email });
-		if (user) {
-			dispatch(setPresentV_T_R_H_F(user.presentAddress.v_t_r_h_f));
-			dispatch(setPresentS_UP_B_O(user.presentAddress.s_up_b_o));
-			dispatch(setPresentS_D(user.presentAddress.s_d));
-			dispatch(setPresentC_D(user.presentAddress.c_d));
-			dispatch(setPresentT_U(user.presentAddress.t_u));
-			dispatch(setPresentPostOffice(user.presentAddress.postOffice));
-		}
-	};
-
 	const [loadingState, setLoadingState] = useState({
 		disabled: false,
 		buttonText: "Next",
 	});
 
 	const [submissionError, setSubmissionError] = useState("");
+
+	const setFormValues = async () => {
+		const user = await findUser({ email: email.trim().toLowerCase() });
+		if (user) {
+			dispatch(setPresentV_T_R_H_F(user.presentAddress.v_t_r_h_f));
+			dispatch(setPresentS_UP_B_O(user.presentAddress.s_up_b_o));
+		}
+	};
 
 	const handlePresentV_T_R_H_FChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setPresentV_T_R_H_F(event.target.value));
@@ -146,7 +142,7 @@ const PresentAddress: React.FC = () => {
 
 	useEffect(() => {
 		setFormValues();
-	}, []);
+	});
 
 	const handleNext = async () => {
 		setSubmissionError((s) => (s = ""));
@@ -228,7 +224,7 @@ const PresentAddress: React.FC = () => {
 					error={presentC_DError}
 				/>
 				<TextInput
-					label="State/Division:"
+					label="Thana/Upazila"
 					name="presentT_U"
 					value={presentT_U}
 					handleChange={handlePresentT_UChange}

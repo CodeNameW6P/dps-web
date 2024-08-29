@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export default function NavBar() {
+const Navbar: React.FC = () => {
 	return (
 		<>
-			<nav className="flex flex-col justify-center items-center p-1 bg-gradient-to-r from-green-500 via-orange-800 to-red-500 md:from-green-500 md:via-orange-700 md:to-red-500 md:flex-row md:justify-evenly">
+			<nav className="flex flex-col justify-center items-center p-1 shadow-lg bg-gradient-to-r from-green-500 via-orange-800 to-red-500 md:from-green-500 md:via-orange-700 md:to-red-500 md:flex-row md:justify-evenly">
 				<div>
 					<Link className="text-white text-xl md:text-2xl" href={""}>
 						Mutual Trust Bank Ltd.
@@ -28,4 +28,6 @@ export default function NavBar() {
 			</nav>
 		</>
 	);
-}
+};
+
+export default Navbar;

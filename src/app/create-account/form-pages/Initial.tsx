@@ -6,7 +6,7 @@ import { createUser, findUser } from "@/actions/userActions";
 import { useState } from "react";
 import TextInput from "@/components/TextInput";
 
-export default function Initial() {
+const Initial: React.FC = () => {
 	const email = useAppSelector((state) => state.formData.email);
 	const phone = useAppSelector((state) => state.formData.phone);
 
@@ -71,10 +71,15 @@ export default function Initial() {
 			if (user) {
 				dispatch(nextPage());
 			} else {
-				await createUser({
+				const user = await createUser({
 					email: email.trim().toLowerCase(),
 					phone: phone.trim(),
 				});
+				if (user) {
+					dispatch(nextPage());
+				} else {
+					setSubmissionError("Internal error occured!");
+				}
 			}
 			setLoadingState((l) => ({
 				...l,
@@ -132,4 +137,6 @@ export default function Initial() {
 			</div>
 		</>
 	);
-}
+};
+
+export default Initial;

@@ -2,14 +2,18 @@ import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { nextPage, prevPage } from "@/redux/slices/currentPageSlice";
 import { setMonthlyIncome, setETINNumber } from "@/redux/slices/formDataSlice";
 import { setMonthlyIncomeError, setETINNumberError } from "@/redux/slices/formErrorSlice";
-import { useState, useEffect } from "react";
-import { findUser, updateUser } from "@/actions/userActions";
+import { useState } from "react";
+import { updateUser } from "@/actions/userActions";
 import TextInput from "@/components/TextInput";
 import ImageUpload from "@/components/ImageUpload";
 
 export default function Income2() {
 	const email = useAppSelector((state) => state.formData.email);
 
+	const occupation = useAppSelector((state) => state.formData.income.occupation);
+	const organization = useAppSelector((state) => state.formData.income.organization);
+	const designation = useAppSelector((state) => state.formData.income.designation);
+	const profession = useAppSelector((state) => state.formData.income.profession);
 	const monthlyIncome = useAppSelector((state) => state.formData.income.monthlyIncome);
 	const etinNumber = useAppSelector((state) => state.formData.income.etinNumber);
 
@@ -17,14 +21,6 @@ export default function Income2() {
 	const etinNumberError = useAppSelector((state) => state.formError.etinNumberError);
 
 	const dispatch = useAppDispatch();
-
-	const setFormValues = async () => {
-		const user = await findUser({ email: email });
-		if (user) {
-			dispatch(setMonthlyIncome(user.income.monthlyIncome));
-			dispatch(setETINNumber(user.income.etinNumber));
-		}
-	};
 
 	const [loadingState, setLoadingState] = useState({
 		disabled: false,
@@ -51,10 +47,6 @@ export default function Income2() {
 		}
 	};
 
-	useEffect(() => {
-		setFormValues();
-	}, []);
-
 	const handleNext = async () => {
 		setSubmissionError((s) => (s = ""));
 		if (validateMonthlyIncome(monthlyIncome.trim())) {
@@ -63,8 +55,12 @@ export default function Income2() {
 				disabled: true,
 				buttonText: "Loading...",
 			}));
-			const user = await updateUser(email, {
+			const user = await updateUser(email.trim().toLowerCase(), {
 				income: {
+					occupation: occupation.trim(),
+					organization: organization.trim(),
+					designation: designation.trim(),
+					profession: profession.trim(),
 					monthlyIncome: monthlyIncome.trim(),
 					etinNumber: etinNumber.trim(),
 				},

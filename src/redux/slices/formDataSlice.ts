@@ -45,6 +45,38 @@ type FormDataTypes = {
 		t_u: string;
 		postOffice: string;
 	};
+	accountAndOther: {
+		preferredAddress: string;
+		accountNumber: string;
+		accountPurpose: string;
+		preferredBranch: string;
+	};
+	fatca: {
+		fatca1: boolean;
+		fatca2: boolean;
+		fatca3: boolean;
+		fatca4: boolean;
+		fatca5: boolean;
+		fatca6: boolean;
+	};
+	nomineePersonal: {
+		name: string;
+		gender: string;
+		dob: string;
+		nidSmartCard: string;
+		nameFather: string;
+		nameMother: string;
+		phone: string;
+		mtbAccount: boolean;
+	};
+	nomineeAddress: {
+		v_t_r_h_f: string;
+		s_up_b_o: string;
+		s_d: string;
+		c_d: string;
+		t_u: string;
+		postOffice: string;
+	};
 };
 
 const initialState: FormDataTypes = {
@@ -84,6 +116,38 @@ const initialState: FormDataTypes = {
 		postOffice: "",
 	},
 	officeAddress: {
+		v_t_r_h_f: "",
+		s_up_b_o: "",
+		s_d: "",
+		c_d: "",
+		t_u: "",
+		postOffice: "",
+	},
+	accountAndOther: {
+		preferredAddress: "",
+		accountNumber: "",
+		accountPurpose: "",
+		preferredBranch: "",
+	},
+	fatca: {
+		fatca1: false,
+		fatca2: false,
+		fatca3: false,
+		fatca4: false,
+		fatca5: false,
+		fatca6: false,
+	},
+	nomineePersonal: {
+		name: "",
+		gender: "",
+		dob: "",
+		nidSmartCard: "",
+		nameFather: "",
+		nameMother: "",
+		phone: "",
+		mtbAccount: false,
+	},
+	nomineeAddress: {
 		v_t_r_h_f: "",
 		s_up_b_o: "",
 		s_d: "",
@@ -196,6 +260,78 @@ export const formDataSlice = createSlice({
 		setOfficePostOffice: (state, action: PayloadAction<string>) => {
 			state.officeAddress.postOffice = action.payload;
 		},
+		setPreferredAddress: (state, action: PayloadAction<string>) => {
+			state.accountAndOther.preferredAddress = action.payload;
+		},
+		setAccountNumber: (state, action: PayloadAction<string>) => {
+			state.accountAndOther.accountNumber = action.payload;
+		},
+		setAccountPurpose: (state, action: PayloadAction<string>) => {
+			state.accountAndOther.accountPurpose = action.payload;
+		},
+		setPreferredBranch: (state, action: PayloadAction<string>) => {
+			state.accountAndOther.preferredBranch = action.payload;
+		},
+		setFATCA1: (state, action: PayloadAction<boolean>) => {
+			state.fatca.fatca1 = action.payload;
+		},
+		setFATCA2: (state, action: PayloadAction<boolean>) => {
+			state.fatca.fatca2 = action.payload;
+		},
+		setFATCA3: (state, action: PayloadAction<boolean>) => {
+			state.fatca.fatca3 = action.payload;
+		},
+		setFATCA4: (state, action: PayloadAction<boolean>) => {
+			state.fatca.fatca4 = action.payload;
+		},
+		setFATCA5: (state, action: PayloadAction<boolean>) => {
+			state.fatca.fatca5 = action.payload;
+		},
+		setFATCA6: (state, action: PayloadAction<boolean>) => {
+			state.fatca.fatca6 = action.payload;
+		},
+		setNomineeName: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.name = action.payload;
+		},
+		setNomineeGender: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.gender = action.payload;
+		},
+		setNomineeDOB: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.dob = action.payload;
+		},
+		setNomineeNIDSmartCard: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.nidSmartCard = action.payload;
+		},
+		setNomineeNameFather: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.nameFather = action.payload;
+		},
+		setNomineeNameMother: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.nameMother = action.payload;
+		},
+		setNomineePhone: (state, action: PayloadAction<string>) => {
+			state.nomineePersonal.phone = action.payload;
+		},
+		setNomineeMTBAccount: (state, action: PayloadAction<boolean>) => {
+			state.nomineePersonal.mtbAccount = action.payload;
+		},
+		setNomineeV_T_R_H_F: (state, action: PayloadAction<string>) => {
+			state.nomineeAddress.v_t_r_h_f = action.payload;
+		},
+		setNomineeS_UP_B_O: (state, action: PayloadAction<string>) => {
+			state.nomineeAddress.s_up_b_o = action.payload;
+		},
+		setNomineeS_D: (state, action: PayloadAction<string>) => {
+			state.nomineeAddress.s_d = action.payload;
+		},
+		setNomineeC_D: (state, action: PayloadAction<string>) => {
+			state.nomineeAddress.c_d = action.payload;
+		},
+		setNomineeT_U: (state, action: PayloadAction<string>) => {
+			state.nomineeAddress.t_u = action.payload;
+		},
+		setNomineePostOffice: (state, action: PayloadAction<string>) => {
+			state.nomineeAddress.postOffice = action.payload;
+		},
 	},
 });
 
@@ -233,5 +369,29 @@ export const {
 	setOfficeC_D,
 	setOfficeT_U,
 	setOfficePostOffice,
+	setPreferredAddress,
+	setAccountNumber,
+	setAccountPurpose,
+	setPreferredBranch,
+	setFATCA1,
+	setFATCA2,
+	setFATCA3,
+	setFATCA4,
+	setFATCA5,
+	setFATCA6,
+	setNomineeName,
+	setNomineeGender,
+	setNomineeDOB,
+	setNomineeNIDSmartCard,
+	setNomineeNameFather,
+	setNomineeNameMother,
+	setNomineePhone,
+	setNomineeMTBAccount,
+	setNomineeV_T_R_H_F,
+	setNomineeS_UP_B_O,
+	setNomineeS_D,
+	setNomineeC_D,
+	setNomineeT_U,
+	setNomineePostOffice,
 } = formDataSlice.actions;
 export default formDataSlice.reducer;

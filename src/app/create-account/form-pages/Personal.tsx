@@ -18,12 +18,14 @@ import {
 	setNameMotherError,
 	setNameSpouseError,
 } from "@/redux/slices/formErrorSlice";
-import { useState, useEffect } from "react";
-import { findUser, updateUser } from "@/actions/userActions";
+import { useState } from "react";
+import { updateUser } from "@/actions/userActions";
+import FormValueSetter from "../FormValueSetter";
 import TextInput from "@/components/TextInput";
 
 const Personal: React.FC = () => {
 	const email = useAppSelector((state) => state.formData.email);
+	const phone = useAppSelector((state) => state.formData.phone);
 
 	const name = useAppSelector((state) => state.formData.personal.name);
 	const gender = useAppSelector((state) => state.formData.personal.gender);
@@ -43,19 +45,6 @@ const Personal: React.FC = () => {
 
 	const dispatch = useAppDispatch();
 
-	const setFormValues = async () => {
-		const user = await findUser({ email: email.trim().toLowerCase() });
-		if (user) {
-			dispatch(setName(user.personal.name));
-			dispatch(setGender(user.personal.gender));
-			dispatch(setDOB(user.personal.dob));
-			dispatch(setNIDSmartCard(user.personal.nidSmartCard));
-			dispatch(setNameFather(user.personal.nameFather));
-			dispatch(setNameMother(user.personal.nameMother));
-			dispatch(setNameSpouse(user.personal.nameSpouse));
-		}
-	};
-
 	const [loadingState, setLoadingState] = useState({
 		disabled: false,
 		buttonText: "Next",
@@ -69,6 +58,10 @@ const Personal: React.FC = () => {
 
 	const handleDOBChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setDOB(event.target.value));
+	};
+
+	const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(setGender(event.target.value));
 	};
 
 	const handleNIDSmartCardChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,10 +140,6 @@ const Personal: React.FC = () => {
 		}
 	};
 
-	useEffect(() => {
-		setFormValues();
-	}, []);
-
 	const handleNext = async () => {
 		setSubmissionError((s) => (s = ""));
 		if (
@@ -192,6 +181,7 @@ const Personal: React.FC = () => {
 
 	return (
 		<>
+			<FormValueSetter email={email.trim().toLowerCase()} phone={phone.trim()} />
 			<h1 className="font-semibold text-xl md:text-2xl">Personal details:</h1>
 			<form
 				onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
@@ -217,7 +207,7 @@ const Personal: React.FC = () => {
 							name="gender"
 							id="male"
 							value="male"
-							onClick={() => dispatch(setGender("male"))}
+							onChange={handleGenderChange}
 							checked={gender === "male" ? true : false}
 						/>
 						<span>Male</span>
@@ -227,7 +217,7 @@ const Personal: React.FC = () => {
 							name="gender"
 							id="female"
 							value="female"
-							onClick={() => dispatch(setGender("female"))}
+							onChange={handleGenderChange}
 							checked={gender === "female" ? true : false}
 						/>
 						<span>Female</span>

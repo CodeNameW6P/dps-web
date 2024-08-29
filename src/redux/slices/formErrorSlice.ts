@@ -35,6 +35,23 @@ type FormErrorTypes = {
 	officeC_DError: string;
 	officeT_UError: string;
 	officePostOfficeError: string;
+	preferredAddressError: string;
+	accountNumberError: string;
+	accountPurposeError: string;
+	preferredBranchError: string;
+	nomineeNameError: string;
+	nomineeGenderError: string;
+	nomineeDOBError: string;
+	nomineeNIDSmartCardError: string;
+	nomineeNameFatherError: string;
+	nomineeNameMotherError: string;
+	nomineePhoneError: string;
+	nomineeV_T_R_H_FError: string;
+	nomineeS_UP_B_OError: string;
+	nomineeS_DError: string;
+	nomineeC_DError: string;
+	nomineeT_UError: string;
+	nomineePostOfficeError: string;
 };
 
 const initialState: FormErrorTypes = {
@@ -71,6 +88,23 @@ const initialState: FormErrorTypes = {
 	officeC_DError: "",
 	officeT_UError: "",
 	officePostOfficeError: "",
+	preferredAddressError: "",
+	accountNumberError: "",
+	accountPurposeError: "",
+	preferredBranchError: "",
+	nomineeNameError: "",
+	nomineeGenderError: "",
+	nomineeDOBError: "",
+	nomineeNIDSmartCardError: "",
+	nomineeNameFatherError: "",
+	nomineeNameMotherError: "",
+	nomineePhoneError: "",
+	nomineeV_T_R_H_FError: "",
+	nomineeS_UP_B_OError: "",
+	nomineeS_DError: "",
+	nomineeC_DError: "",
+	nomineeT_UError: "",
+	nomineePostOfficeError: "",
 };
 
 export const formErrorSlice = createSlice({
@@ -176,6 +210,57 @@ export const formErrorSlice = createSlice({
 		setOfficePostOfficeError: (state, action: PayloadAction<string>) => {
 			state.officePostOfficeError = action.payload;
 		},
+		setPreferredAddressError: (state, action: PayloadAction<string>) => {
+			state.preferredAddressError = action.payload;
+		},
+		setAccountNumberError: (state, action: PayloadAction<string>) => {
+			state.accountNumberError = action.payload;
+		},
+		setAccountPurposeError: (state, action: PayloadAction<string>) => {
+			state.accountPurposeError = action.payload;
+		},
+		setPreferredBranchError: (state, action: PayloadAction<string>) => {
+			state.preferredBranchError = action.payload;
+		},
+		setNomineeNameError: (state, action: PayloadAction<string>) => {
+			state.nomineeNameError = action.payload;
+		},
+		setNomineeGenderError: (state, action: PayloadAction<string>) => {
+			state.nomineeGenderError = action.payload;
+		},
+		setNomineeDOBError: (state, action: PayloadAction<string>) => {
+			state.nomineeDOBError = action.payload;
+		},
+		setNomineeNIDSmartCardError: (state, action: PayloadAction<string>) => {
+			state.nomineeNIDSmartCardError = action.payload;
+		},
+		setNomineeNameFatherError: (state, action: PayloadAction<string>) => {
+			state.nomineeNameFatherError = action.payload;
+		},
+		setNomineeNameMotherError: (state, action: PayloadAction<string>) => {
+			state.nomineeNameMotherError = action.payload;
+		},
+		setNomineePhoneError: (state, action: PayloadAction<string>) => {
+			state.nomineePhoneError = action.payload;
+		},
+		setNomineeV_T_R_H_FError: (state, action: PayloadAction<string>) => {
+			state.nomineeV_T_R_H_FError = action.payload;
+		},
+		setNomineeS_UP_B_OError: (state, action: PayloadAction<string>) => {
+			state.nomineeS_UP_B_OError = action.payload;
+		},
+		setNomineeS_DError: (state, action: PayloadAction<string>) => {
+			state.nomineeS_DError = action.payload;
+		},
+		setNomineeC_DError: (state, action: PayloadAction<string>) => {
+			state.nomineeC_DError = action.payload;
+		},
+		setNomineeT_UError: (state, action: PayloadAction<string>) => {
+			state.nomineeT_UError = action.payload;
+		},
+		setNomineePostOfficeError: (state, action: PayloadAction<string>) => {
+			state.nomineePostOfficeError = action.payload;
+		},
 	},
 });
 
@@ -213,5 +298,22 @@ export const {
 	setOfficeC_DError,
 	setOfficeT_UError,
 	setOfficePostOfficeError,
+	setPreferredAddressError,
+	setAccountNumberError,
+	setAccountPurposeError,
+	setPreferredBranchError,
+	setNomineeNameError,
+	setNomineeGenderError,
+	setNomineeDOBError,
+	setNomineeNIDSmartCardError,
+	setNomineeNameFatherError,
+	setNomineeNameMotherError,
+	setNomineePhoneError,
+	setNomineeV_T_R_H_FError,
+	setNomineeS_UP_B_OError,
+	setNomineeS_DError,
+	setNomineeC_DError,
+	setNomineeT_UError,
+	setNomineePostOfficeError,
 } = formErrorSlice.actions;
 export default formErrorSlice.reducer;

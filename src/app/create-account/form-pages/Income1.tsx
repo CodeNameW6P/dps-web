@@ -12,17 +12,19 @@ import {
 	setProfessionError,
 } from "@/redux/slices/formErrorSlice";
 import { nextPage, prevPage } from "@/redux/slices/currentPageSlice";
-import { useState, useEffect } from "react";
-import { findUser, updateUser } from "@/actions/userActions";
+import { useState } from "react";
+import { updateUser } from "@/actions/userActions";
 import TextInput from "@/components/TextInput";
 
-export default function Income1() {
+const Income1: React.FC = () => {
 	const email = useAppSelector((state) => state.formData.email);
 
 	const occupation = useAppSelector((state) => state.formData.income.occupation);
 	const organization = useAppSelector((state) => state.formData.income.organization);
 	const designation = useAppSelector((state) => state.formData.income.designation);
 	const profession = useAppSelector((state) => state.formData.income.profession);
+	const monthlyIncome = useAppSelector((state) => state.formData.income.monthlyIncome);
+	const etinNumber = useAppSelector((state) => state.formData.income.etinNumber);
 
 	const occupationError = useAppSelector((state) => state.formError.occupationError);
 	const organizationError = useAppSelector((state) => state.formError.organizationError);
@@ -31,22 +33,16 @@ export default function Income1() {
 
 	const dispatch = useAppDispatch();
 
-	const setFormValues = async () => {
-		const user = await findUser({ email: email });
-		if (user) {
-			dispatch(setOccupation(user.income.occupation));
-			dispatch(setOrganization(user.income.organization));
-			dispatch(setDesignation(user.income.designation));
-			dispatch(setProfession(user.income.profession));
-		}
-	};
-
 	const [loadingState, setLoadingState] = useState({
 		disabled: false,
 		buttonText: "Next",
 	});
 
 	const [submissionError, setSubmissionError] = useState("");
+
+	const handleOccupationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(setOccupation(event.target.value));
+	};
 
 	const handleOrganizationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setOrganization(event.target.value));
@@ -100,10 +96,6 @@ export default function Income1() {
 		}
 	};
 
-	useEffect(() => {
-		setFormValues();
-	}, []);
-
 	const handleNext = async () => {
 		setSubmissionError((s) => (s = ""));
 		if (
@@ -123,6 +115,8 @@ export default function Income1() {
 					organization: organization.trim(),
 					designation: designation.trim(),
 					profession: profession.trim(),
+					monthlyIncome: monthlyIncome.trim(),
+					etinNumber: etinNumber.trim(),
 				},
 			});
 			if (user) {
@@ -158,7 +152,7 @@ export default function Income1() {
 							name="occupation"
 							id="profession"
 							value="profession"
-							onClick={() => dispatch(setOccupation("profession"))}
+							onChange={handleOccupationChange}
 							checked={occupation === "profession" ? true : false}
 						/>
 						<span>Profession</span>
@@ -168,7 +162,7 @@ export default function Income1() {
 							name="occupation"
 							id="business"
 							value="business"
-							onClick={() => dispatch(setOccupation("business"))}
+							onChange={handleOccupationChange}
 							checked={occupation === "business" ? true : false}
 						/>
 						<span>Business</span>
@@ -218,4 +212,6 @@ export default function Income1() {
 			</div>
 		</>
 	);
-}
+};
+
+export default Income1;
