@@ -205,7 +205,7 @@ const Personal: React.FC = () => {
 							className="text-gray-500 focus:outline-none"
 							type="radio"
 							name="gender"
-							id="male"
+							id="gender"
 							value="male"
 							onChange={handleGenderChange}
 							checked={gender === "male" ? true : false}
@@ -215,7 +215,7 @@ const Personal: React.FC = () => {
 							className="text-gray-500 focus:outline-none"
 							type="radio"
 							name="gender"
-							id="female"
+							id="gender"
 							value="female"
 							onChange={handleGenderChange}
 							checked={gender === "female" ? true : false}

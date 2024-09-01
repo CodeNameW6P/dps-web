@@ -16,8 +16,8 @@ import {
 	setPresentPostOfficeError,
 } from "@/redux/slices/formErrorSlice";
 import { nextPage, prevPage } from "@/redux/slices/currentPageSlice";
-import { useEffect, useState } from "react";
-import { findUser, updateUser } from "@/actions/userActions";
+import { useState } from "react";
+import { updateUser } from "@/actions/userActions";
 import TextInput from "@/components/TextInput";
 
 const PresentAddress: React.FC = () => {
@@ -47,14 +47,6 @@ const PresentAddress: React.FC = () => {
 	});
 
 	const [submissionError, setSubmissionError] = useState("");
-
-	const setFormValues = async () => {
-		const user = await findUser({ email: email.trim().toLowerCase() });
-		if (user) {
-			dispatch(setPresentV_T_R_H_F(user.presentAddress.v_t_r_h_f));
-			dispatch(setPresentS_UP_B_O(user.presentAddress.s_up_b_o));
-		}
-	};
 
 	const handlePresentV_T_R_H_FChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setPresentV_T_R_H_F(event.target.value));
@@ -139,10 +131,6 @@ const PresentAddress: React.FC = () => {
 			return true;
 		}
 	};
-
-	useEffect(() => {
-		setFormValues();
-	});
 
 	const handleNext = async () => {
 		setSubmissionError((s) => (s = ""));

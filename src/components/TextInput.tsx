@@ -37,7 +37,7 @@ const TextInput: React.FC<TextInputTypes> = ({
 					<hr className="border-2 w-3/4 border-green-500" />
 				</div>
 				<span className="text-red-500">{error}</span>
-				<span className="text-gray-500">{hint}</span>
+				<span className="text-gray-500 text-justify">{hint}</span>
 			</div>
 		</>
 	);

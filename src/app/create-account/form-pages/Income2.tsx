@@ -7,7 +7,7 @@ import { updateUser } from "@/actions/userActions";
 import TextInput from "@/components/TextInput";
 import ImageUpload from "@/components/ImageUpload";
 
-export default function Income2() {
+const Income2: React.FC = () => {
 	const email = useAppSelector((state) => state.formData.email);
 
 	const occupation = useAppSelector((state) => state.formData.income.occupation);
@@ -127,4 +127,6 @@ export default function Income2() {
 			</div>
 		</>
 	);
-}
+};
+
+export default Income2;

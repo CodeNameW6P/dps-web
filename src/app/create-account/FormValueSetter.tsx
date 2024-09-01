@@ -73,21 +73,21 @@ const FormValueSetter: React.FC<FormValueSetterTypes> = ({ email, phone }) => {
 			dispatch(formDataReducers.setFATCA6(user.fatca.fatca6));
 
 			// nomineePersonal
-			dispatch(formDataReducers.setNomineeName(user.personal.name));
-			dispatch(formDataReducers.setNomineeGender(user.personal.gender));
-			dispatch(formDataReducers.setNomineeDOB(user.personal.dob));
-			dispatch(formDataReducers.setNomineeNIDSmartCard(user.personal.nidSmartCard));
-			dispatch(formDataReducers.setNomineeNameFather(user.personal.nameFather));
-			dispatch(formDataReducers.setNomineeNameMother(user.personal.nameMother));
-			dispatch(formDataReducers.setNomineePhone(user.personal.phone));
+			dispatch(formDataReducers.setNomineeName(user.nomineePersonal.name));
+			dispatch(formDataReducers.setNomineeGender(user.nomineePersonal.gender));
+			dispatch(formDataReducers.setNomineeDOB(user.nomineePersonal.dob));
+			dispatch(formDataReducers.setNomineeNIDSmartCard(user.nomineePersonal.nidSmartCard));
+			dispatch(formDataReducers.setNomineeNameFather(user.nomineePersonal.nameFather));
+			dispatch(formDataReducers.setNomineeNameMother(user.nomineePersonal.nameMother));
+			dispatch(formDataReducers.setNomineePhone(user.nomineePersonal.phone));
 
 			// nomineeAddress
-			dispatch(formDataReducers.setPresentV_T_R_H_F(user.nomineeAddress.v_t_r_h_f));
-			dispatch(formDataReducers.setPresentS_UP_B_O(user.nomineeAddress.s_up_b_o));
-			dispatch(formDataReducers.setPresentS_D(user.nomineeAddress.s_d));
-			dispatch(formDataReducers.setPresentC_D(user.nomineeAddress.c_d));
-			dispatch(formDataReducers.setPresentT_U(user.nomineeAddress.t_u));
-			dispatch(formDataReducers.setPresentPostOffice(user.nomineeAddress.postOffice));
+			dispatch(formDataReducers.setNomineeV_T_R_H_F(user.nomineeAddress.v_t_r_h_f));
+			dispatch(formDataReducers.setNomineeS_UP_B_O(user.nomineeAddress.s_up_b_o));
+			dispatch(formDataReducers.setNomineeS_D(user.nomineeAddress.s_d));
+			dispatch(formDataReducers.setNomineeC_D(user.nomineeAddress.c_d));
+			dispatch(formDataReducers.setNomineeT_U(user.nomineeAddress.t_u));
+			dispatch(formDataReducers.setNomineePostOffice(user.nomineeAddress.postOffice));
 		}
 	};
 

@@ -10,7 +10,7 @@ const ImageUpload: React.FC<ImageUploadTypes> = ({ name, label }) => {
 				<label className="md:text-lg" htmlFor={name}>
 					{label}
 				</label>
-				<div className="flex flex-col gap-2 items-center justify-center border-2 border-dashed border-black min-h-64 rounded-md">
+				<div className="hidden md:flex flex-col gap-2 items-center justify-center border-2 border-dashed border-black min-h-64 rounded-md">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="32"
